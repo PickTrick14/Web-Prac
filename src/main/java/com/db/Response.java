@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
-@Table(name = "response")
+@Table(name = "application")
 public class Response {
 
     @Id

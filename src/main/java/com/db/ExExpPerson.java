@@ -10,18 +10,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ex_exp_person")
+@Table(name = "person_experience")
 public class ExExpPerson {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
-    @JoinColumn(name = "expID")
+    @PrimaryKeyJoinColumn(name = "experienceid")
     private Expirience expirience;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "personID")
+    @PrimaryKeyJoinColumn(name = "personID")
     private Person person;
 }
