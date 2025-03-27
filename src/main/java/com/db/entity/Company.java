@@ -1,4 +1,4 @@
-package com.db;
+package com.db.entity;
 
 import lombok.*;
 
@@ -10,13 +10,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @RequiredArgsConstructor
 @Table(name = "company")
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)

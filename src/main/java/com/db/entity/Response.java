@@ -1,4 +1,4 @@
-package com.db;
+package com.db.entity;
 
 import lombok.*;
 
@@ -10,20 +10,19 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @RequiredArgsConstructor
 @Table(name = "application")
 public class Response {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "applicationDate", nullable = false)
     private LocalDate applicationDate;
 
-    /**
-     * Текст отклика, сопроводительное письмо и т.п.
-     */
-    private String text;
 
     @ManyToOne
     @JoinColumn(name = "personID")

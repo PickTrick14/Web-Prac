@@ -1,4 +1,4 @@
-package com.db;
+package com.db.entity;
 
 import lombok.*;
 
@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @RequiredArgsConstructor
 @Table(name = "person_experience")
 public class ExExpPerson {

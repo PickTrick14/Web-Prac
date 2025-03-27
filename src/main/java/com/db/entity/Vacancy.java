@@ -1,4 +1,4 @@
-package com.db;
+package com.db.entity;
 
 import lombok.*;
 
@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @RequiredArgsConstructor
 @Table(name = "vacancy")
 public class Vacancy {
@@ -17,10 +18,13 @@ public class Vacancy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "position", nullable = false)
     private String position;
 
+    @Column(name = "salary", nullable = false)
     private Integer salary;
 
+    @Column(name = "requirements")
     private String requirements;
 
     @ManyToOne

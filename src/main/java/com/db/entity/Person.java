@@ -1,4 +1,4 @@
-package com.db;
+package com.db.entity;
 
 import lombok.*;
 
@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "person")
 public class Person {
@@ -17,15 +18,20 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String city;
+    @ManyToOne
+    @JoinColumn(name = "city")
+    private City city;
 
+    @Column(name = "fullName", nullable = false)
     private String name;
 
+    @Column(name = "contactInfo")
     private String contactInfo;
 
     @Column(name = "isSearching")
     private boolean isSearching;
 
+    @Column(name = "age")
     private int age;
 
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)

@@ -1,4 +1,4 @@
-package com.db;
+package com.db.entity;
 
 import lombok.*;
 
@@ -10,25 +10,25 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @RequiredArgsConstructor
-@Table(name = "expirience")
+@Table(name = "experience")
 public class Expirience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "position", nullable = false)
     private String position;
 
+    @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 
+    @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name = "companyID")
     private Company company;
-
-    @ManyToOne
-    @JoinColumn(name = "personID")
-    private Person person;
 }
