@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public abstract class GeneralDAO<T> {
 
-    private final Class<T> classItem;
+    protected Class<T> classItem;
     protected SessionFactory sessionFactory;
 
     public GeneralDAO(Class<T> classItem) {
@@ -24,12 +24,12 @@ public abstract class GeneralDAO<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    protected Session getCurrentSession() {
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
     public T findById(Long id) {
-        return (T) getCurrentSession().get(classItem, id);
+        return getCurrentSession().get(classItem, id);
     }
 
     public List<T> findAll() {
@@ -38,7 +38,7 @@ public abstract class GeneralDAO<T> {
     }
 
     public void save(T entity) {
-        getCurrentSession().save(entity);
+        getCurrentSession().persist(entity);
     }
 
     public void update(T entity) {

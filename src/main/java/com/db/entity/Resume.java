@@ -24,7 +24,7 @@ public class Resume {
     private String wantedPosition;
 
     @Column(name = "wanted_salary", nullable = false)
-    private Integer wantedSalary;
+    private Long wantedSalary;
 
     @Column(name = "skills")
     private String skills;
@@ -32,7 +32,4 @@ public class Resume {
     @ManyToOne
     @JoinColumn(name = "personID")
     private Person person;
-
-    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL)
-    private List<ExExpPerson> exExpPersons;
 }

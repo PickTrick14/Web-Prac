@@ -19,6 +19,9 @@ public class Expirience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "salary")
+    private Long salary;
+
     @Column(name = "position", nullable = false)
     private String position;
 

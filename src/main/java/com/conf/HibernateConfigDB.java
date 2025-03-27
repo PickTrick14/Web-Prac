@@ -1,5 +1,6 @@
 package com.conf;
 
+import com.db.entity.Account;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,6 +61,7 @@ public class HibernateConfigDB {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(getDataSource());
         sessionFactory.setPackagesToScan(PACKAGES_TO_SCAN);
+        // sessionFactory.setAnnotatedClasses(Account.class);
 
 
         Properties hibernateProperties = new Properties();

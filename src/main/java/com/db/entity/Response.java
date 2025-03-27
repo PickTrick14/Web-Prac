@@ -31,4 +31,7 @@ public class Response {
     @ManyToOne
     @JoinColumn(name = "vacancyID")
     private Vacancy vacancy;
+
+    @Column(name = "status", nullable = false)
+    private String status;
 }

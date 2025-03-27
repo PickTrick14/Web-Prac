@@ -21,9 +21,6 @@ public class Company {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Vacancy> vacancies;
-
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Expirience> employers;
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
+    private Account account;
 }

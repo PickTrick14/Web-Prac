@@ -20,7 +20,4 @@ public class City {
 
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private List<Person> Persons;
 }

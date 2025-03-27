@@ -2,7 +2,6 @@ package com.db.dao;
 
 import com.db.entity.Account;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
