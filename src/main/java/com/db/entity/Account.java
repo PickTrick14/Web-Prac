@@ -10,9 +10,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
+@EqualsAndHashCode
 @Table(name = "account")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

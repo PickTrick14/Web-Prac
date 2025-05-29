@@ -1,16 +1,15 @@
-/*
 DROP DOMAIN IF EXISTS email_address;
-DROP TABLE Education;
-DROP TABLE Resume;
-DROP TABLE Person_Experience;
-DROP TABLE Application;
-DROP TABLE Person;
-DROP TABLE City;
-DROP TABLE Vacancy;
-DROP TABLE Experience;
-DROP TABLE Company;
-DROP TABLE Account;
-*/
+
+DROP TABLE IF EXISTS Education;
+DROP TABLE IF EXISTS  Resume;
+DROP TABLE IF EXISTS  Person_Experience;
+DROP TABLE IF EXISTS  Response;
+DROP TABLE IF EXISTS  Person;
+DROP TABLE IF EXISTS  City;
+DROP TABLE IF EXISTS  Vacancy;
+DROP TABLE IF EXISTS  Experience;
+DROP TABLE IF EXISTS  Company;
+DROP TABLE IF EXISTS  Account;
 
 CREATE DOMAIN email_address AS TEXT
   CHECK (
@@ -47,7 +46,7 @@ CREATE TABLE Person (
     id SERIAL PRIMARY KEY,
     city INT REFERENCES City(id) ON DELETE SET NULL,
     accountID INT UNIQUE REFERENCES Account(id) ON DELETE CASCADE,
-    fullName TEXT NOT NULL,
+    name TEXT NOT NULL,
 	age INT CHECK(age >= 18) NOT NULL,
     contactInfo TEXT,
     isSearching BOOLEAN NOT NULL DEFAULT TRUE
@@ -78,11 +77,11 @@ CREATE TABLE Resume (
     skills TEXT DEFAULT 'No special skills'
 );
 
-CREATE TABLE Application (
+CREATE TABLE Response (
     id SERIAL PRIMARY KEY,
     personID INT REFERENCES Person(id) ON DELETE CASCADE,
     vacancyID INT REFERENCES Vacancy(id) ON DELETE CASCADE,
-    applicationDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    responseDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status TEXT DEFAULT 'Pending' CHECK(status in ('Pending', 'Reviewed', 'Accepted'))
 );
 

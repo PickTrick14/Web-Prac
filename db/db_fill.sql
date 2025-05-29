@@ -42,14 +42,14 @@ INSERT INTO Vacancy (companyID, position, salary, requirements) VALUES
 (5, 'Sales Manager', 60000, 'Proven sales record'),
 (6, 'HR Specialist', 55000, 'HR degree and experience');
 
-INSERT INTO Person (city, accountID, fullName, age, contactInfo, isSearching) VALUES
-(1, 6, 'Alice Johnson', 28, 'alice.johnson@gmail.com', TRUE),
-(2, 7, 'Bob Smith', 32, 'bob.smith@gmail.com', TRUE),
-(3, 8, 'Charlie Davis', 26, 'charlie.davis@gmail.com', TRUE),
-(4, 9, 'Diana Brown', 30, 'diana.brown@gmail.com', FALSE),
-(5, 10, 'Edward Wilson', 35, 'edward.wilson@gmail.com', TRUE),
-(6, 11, 'Fiona Clark', 29, 'fiona.clark@gmail.com', TRUE),
-(7, 12, 'George Miller', 40, 'george.miller@gmail.com', FALSE);
+INSERT INTO Person (city, accountID, name, age, contactInfo, isSearching) VALUES
+(1, 2, 'Alice Johnson', 28, 'alice.johnson@gmail.com', TRUE),
+(2, 3, 'Bob Smith', 32, 'bob.smith@gmail.com', TRUE),
+(3, 5, 'Charlie Davis', 26, 'charlie.davis@gmail.com', TRUE),
+(4, 4, 'Diana Brown', 30, 'diana.brown@gmail.com', FALSE),
+(5, 1, 'Edward Wilson', 35, 'edward.wilson@gmail.com', TRUE),
+(6, 7, 'Fiona Clark', 29, 'fiona.clark@gmail.com', TRUE),
+(7, 6, 'George Miller', 40, 'george.miller@gmail.com', FALSE);
 
 INSERT INTO Education (personID, institution, specialization, endYear) VALUES
 (1, 'MSU', 'Computer Science', 2015),
@@ -78,9 +78,9 @@ INSERT INTO Resume (personID, wanted_position, wanted_salary, skills) VALUES
 (6, 'Marketing Manager', 70000, 'SEO, Content Marketing'),
 (7, 'HR Manager', 68000, 'Recruitment, Employee Relations');
 
-INSERT INTO Application (personID, vacancyID, applicationDate, status) VALUES
+INSERT INTO Response (personID, vacancyID, responseDate, status) VALUES
 (1, 1, '2024-01-10 10:00:00', 'Pending'),
-(2, 2, '2024-01-11 11:00:00', 'Reviewed'),
+(1, 2, '2024-01-11 11:00:00', 'Reviewed'),
 (3, 3, '2024-01-12 12:00:00', 'Pending'),
 (4, 4, '2024-01-13 13:00:00', 'Accepted'),
 (5, 5, '2024-01-14 14:00:00', 'Pending'),

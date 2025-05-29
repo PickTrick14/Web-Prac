@@ -24,7 +24,7 @@ public class Resume {
     private String wantedPosition;
 
     @Column(name = "wanted_salary", nullable = false)
-    private Long wantedSalary;
+    private Integer wantedSalary;
 
     @Column(name = "skills")
     private String skills;

@@ -30,4 +30,7 @@ public class Vacancy {
     @ManyToOne
     @JoinColumn(name = "companyID")
     private Company company;
+
+    @OneToMany(mappedBy = "vacancy", cascade = CascadeType.ALL)
+    private List<Response> responses;
 }

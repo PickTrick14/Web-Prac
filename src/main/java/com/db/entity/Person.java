@@ -18,10 +18,10 @@ public class Person {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "city")
+    @JoinColumn(name = "city", nullable = false)
     private City city;
 
-    @Column(name = "fullName", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "contactInfo")
@@ -33,7 +33,7 @@ public class Person {
     @Column(name = "age")
     private int age;
 
-    @JoinColumn(name = "accountID")
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "accountID", nullable = false)
     private Account account;
 }

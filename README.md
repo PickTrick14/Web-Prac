@@ -2,7 +2,17 @@
 
 В данном репозитории находится Web-сервис для кадрового агентства
 
-> Статус: готов отчет №1, файл: [Отчет](/report/report1.md)
+> Статус: готова стадия 2
+
+> Файл отчета первой стадии: [Отчет](/report/report1.md)
+
+> Тесты и покрытие второй стадии: [README.md](/README.md)
+
+## Результаты тестирования DAO
+![test_dao](/report/test_res.png)
+
+## Покрытие DAO
+![test_dao](/report/test_coverage_dao.png)
 
 ## Навигация страниц
 ![pages](/report/page_navigation.png "Навигация страниц")

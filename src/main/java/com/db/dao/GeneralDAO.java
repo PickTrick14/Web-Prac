@@ -3,6 +3,7 @@ package com.db.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Transactional
 public abstract class GeneralDAO<T> {
 
-    protected Class<T> classItem;
+    protected final Class<T> classItem;
     protected SessionFactory sessionFactory;
 
     public GeneralDAO(Class<T> classItem) {
@@ -20,16 +21,16 @@ public abstract class GeneralDAO<T> {
     }
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public void setSessionFactory(LocalSessionFactoryBean sessionFactory) {
+        this.sessionFactory = sessionFactory.getObject();
     }
 
-    public Session getCurrentSession() {
+    protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
     public T findById(Long id) {
-        return getCurrentSession().get(classItem, id);
+        return (T) getCurrentSession().get(classItem, id);
     }
 
     public List<T> findAll() {
@@ -38,11 +39,11 @@ public abstract class GeneralDAO<T> {
     }
 
     public void save(T entity) {
-        getCurrentSession().persist(entity);
+        getCurrentSession().save(entity);
     }
 
     public void update(T entity) {
-        getCurrentSession().update("Account", entity);
+        getCurrentSession().update(entity);
     }
 
     public void delete(T entity) {

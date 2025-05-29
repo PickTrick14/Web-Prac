@@ -13,17 +13,17 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 @RequiredArgsConstructor
 @Table(name = "experience")
-public class Expirience {
+public class Experience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "salary")
-    private Long salary;
-
     @Column(name = "position", nullable = false)
     private String position;
+
+    @Column(name = "salary")
+    private Double salary;
 
     @Column(name = "startDate", nullable = false)
     private LocalDate startDate;

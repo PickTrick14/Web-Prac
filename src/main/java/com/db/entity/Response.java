@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
-@Table(name = "application")
+@Table(name = "response")
 public class Response {
 
     @Id
@@ -20,9 +20,11 @@ public class Response {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "applicationDate", nullable = false)
-    private LocalDate applicationDate;
+    @Column(name = "responseDate", nullable = false)
+    private LocalDate responseDate;
 
+    @Column(name = "status")
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "personID")
@@ -31,7 +33,4 @@ public class Response {
     @ManyToOne
     @JoinColumn(name = "vacancyID")
     private Vacancy vacancy;
-
-    @Column(name = "status", nullable = false)
-    private String status;
 }

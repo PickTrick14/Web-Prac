@@ -22,14 +22,14 @@ public class AccountDAO extends GeneralDAO<Account> {
     }
 
     public List<Account> findEmployer() {
-        return null;
+        Session cur_session = getCurrentSession();
+        return cur_session.createQuery("from Account where isEmployer = :Employer", Account.class)
+                .setParameter("Employer", true).getResultList();
     }
 
     public List<Account> findWorker() {
-        return null;
-    }
-
-    public boolean exist(String email, Long password) {
-        return true;
+        Session cur_session = getCurrentSession();
+        return cur_session.createQuery("from Account where isEmployer = :Employer", Account.class)
+                .setParameter("Employer", false).getResultList();
     }
 }

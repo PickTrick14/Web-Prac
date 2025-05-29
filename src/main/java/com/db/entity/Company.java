@@ -15,12 +15,14 @@ import java.util.List;
 @Table(name = "company")
 public class Company {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "accountID", nullable = false)
     private Account account;
 }
