@@ -32,6 +32,10 @@ public class Experience {
     private LocalDate endDate;
 
     @ManyToOne
+    @JoinColumn(name = "personID")
+    private Person person;
+
+    @ManyToOne
     @JoinColumn(name = "companyID")
     private Company company;
 }

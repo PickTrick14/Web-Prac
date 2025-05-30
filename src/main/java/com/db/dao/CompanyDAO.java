@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Repository
 @Transactional
@@ -25,13 +24,13 @@ public class CompanyDAO extends GeneralDAO<Company> {
 
     public List<Company> findByAccount(Account account) {
         List<Company> temp = new ArrayList<Company>();
-        if (account == null || !account.isEmployer()) {
+        if (account == null || account.isEmployer()) {
             return temp;
         }
 
         Session curSession = getCurrentSession();
         return curSession.createQuery(
-                        "from Company c where c.account = :account and c.account.isEmployer = true",
+                        "from Company c where c.account = :account and c.account.isEmployer = false",
                         Company.class)
                 .setParameter("account", account)
                 .getResultList();

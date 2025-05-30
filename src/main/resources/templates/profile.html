@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title} + ' - HR Agency'">HR Agency</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+<body>
+<div th:insert="~{layout :: navbar}"></div>
+<div class="container">
+  <h1>Profile</h1>
+  <div th:if="${!isEmployer}">
+    <h3>Company Profile</h3>
+    <form action="/profile/updateCompany" method="post">
+      <div class="mb-3">
+        <label for="companyName" class="form-label">Company Name</label>
+        <input type="text" class="form-control" id="companyName" name="companyName" th:value="${company.name}" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <h3>Vacancies</h3>
+    <a href="/vacancies/add" class="btn btn-success mb-3">Add Vacancy</a>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Position</th>
+        <th>Salary</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="vacancy : ${vacancies}">
+        <td th:text="${vacancy.position}"></td>
+        <td th:text="${vacancy.salary}"></td>
+        <td>
+          <a th:href="@{/vacancies/edit/{id}(id=${vacancy.id})}" class="btn btn-primary">Edit</a>
+          <a th:href="@{/vacancies/delete/{id}(id=${vacancy.id})}" class="btn btn-danger">Delete</a>
+          <a th:href="@{/vacancies/view/{id}(id=${vacancy.id})}" class="btn btn-info">View</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Responses</h3>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Position</th>
+        <th>Applicant</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="x : ${employerResponses}">
+        <td th:text="${x.vacancy.position}"></td>
+        <td th:text="${x.person.name}"></td>
+        <td th:text="${x.status}"></td>
+        <td>
+          <form action="/responses/updateStatus" method="post">
+            <input type="hidden" name="responseId" th:value="${x.id}">
+            <select name="status" class="form-select d-inline w-auto">
+              <option value="Pending">Pending</option>
+              <option value="Reviewed">Reviewed</option>
+              <option value="Accepted">Accepted</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div th:unless="${!isEmployer}">
+    <h3>Personal Information</h3>
+    <form action="/profile/updatePerson" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" name="name" th:value="${person.name}" required>
+      </div>
+      <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="age" name="age" th:value="${person.age}" required>
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" name="city" th:value="${person.city != null ? person.city.name : ''}" required>
+      </div>
+      <div class="mb-3">
+        <label for="contactInfo" class="form-label">Contact Info</label>
+        <input type="text" class="form-control" id="contactInfo" name="contactInfo" th:value="${person.contactInfo}">
+      </div>
+      <div class="mb-3">
+        <label for="isSearching" class="form-label">Searching for Job</label>
+        <select class="form-select" id="isSearching" name="isSearching">
+          <option value="true" th:selected="${person.isSearching}">Yes</option>
+          <option value="false" th:selected="${!person.isSearching}">No</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <h3>Resumes</h3>
+    <a href="/resumes/add" class="btn btn-success mb-3">Add Resume</a>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Wanted Position</th>
+        <th>Wanted Salary</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="resume : ${resumes}">
+        <td th:text="${resume.wantedPosition}"></td>
+        <td th:text="${resume.wantedSalary}"></td>
+        <td>
+          <a th:href="@{/resumes/edit/{id}(id=${resume.id})}" class="btn btn-primary">Edit</a>
+          <a th:href="@{/resumes/delete/{id}(id=${resume.id})}" class="btn btn-danger">Delete</a>
+          <a th:href="@{/resumes/view/{id}(id=${resume.id})}" class="btn btn-info">View</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Education</h3>
+    <form action="/profile/addEducation" method="post" class="mb-3">
+      <div class="mb-3">
+        <label for="institution" class="form-label">Institution</label>
+        <input type="text" class="form-control" id="institution" name="institution" required>
+      </div>
+      <div class="mb-3">
+        <label for="specialization" class="form-label">Specialization</label>
+        <input type="text" class="form-control" id="specialization" name="specialization" required>
+      </div>
+      <div class="mb-3">
+        <label for="endYear" class="form-label">End Year</label>
+        <input type="number" class="form-control" id="endYear" name="endYear" required>
+      </div>
+      <button type="submit" class="btn btn-success">Add Education</button>
+    </form>
+    <table class="table mb-3">
+      <thead>
+      <tr>
+        <th>Institution</th>
+        <th>Specialization</th>
+        <th>End Year</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="education : ${educations}">
+        <td th:text="${education.institution}"></td>
+        <td th:text="${education.specialization}"></td>
+        <td th:text="${education.endYear}"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Experience</h3>
+    <form action="/profile/addExperience" method="post" class="mb-3">
+      <div class="mb-3">
+        <label for="company" class="form-label">Company</label>
+        <input type="text" class="form-control" id="company" name="company" required>
+      </div>
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <input type="text" class="form-control" id="position" name="position" required>
+      </div>
+      <div class="mb-3">
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" class="form-control" id="salary" name="salary">
+      </div>
+      <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" class="form-control" id="startDate" name="startDate" required>
+      </div>
+      <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" class="form-control" id="endDate" name="endDate" required>
+      </div>
+      <button type="submit" class="btn btn-success">Add Experience</button>
+    </form>
+    <table class="table mb-3">
+      <thead>
+      <tr>
+        <th>Company</th>
+        <th>Position</th>
+        <th>Salary</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="experience : ${experiences}">
+        <td th:text="${experience.company != null ? experience.company.name : 'N/A'}"></td>
+        <td th:text="${experience.position}"></td>
+        <td th:text="${experience.salary != null ? experience.salary : 'N/A'}"></td>
+        <td th:text="${experience.startDate}"></td>
+        <td th:text="${experience.endDate}"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Responses</h3>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Position</th>
+        <th>Company</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="x : ${seekerResponses}">
+        <td th:text="${x.vacancy.position}"></td>
+        <td th:text="${x.vacancy.company != null ? x.vacancy.company.name : 'N/A'}"></td>
+        <td th:text="${x.status}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

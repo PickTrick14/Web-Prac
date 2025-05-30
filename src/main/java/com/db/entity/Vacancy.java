@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
 @Table(name = "vacancy")

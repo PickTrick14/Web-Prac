@@ -4,10 +4,10 @@ DROP TABLE IF EXISTS Education;
 DROP TABLE IF EXISTS  Resume;
 DROP TABLE IF EXISTS  Person_Experience;
 DROP TABLE IF EXISTS  Response;
+DROP TABLE IF EXISTS  Experience;
 DROP TABLE IF EXISTS  Person;
 DROP TABLE IF EXISTS  City;
 DROP TABLE IF EXISTS  Vacancy;
-DROP TABLE IF EXISTS  Experience;
 DROP TABLE IF EXISTS  Company;
 DROP TABLE IF EXISTS  Account;
 
@@ -62,7 +62,8 @@ CREATE TABLE Education (
 
 CREATE TABLE Experience (
     id SERIAL PRIMARY KEY,
-    companyID INT REFERENCES Company(id) ON DELETE SET NULL,
+    personID INT REFERENCES Person(id) ON DELETE SET NULL,
+    companyID INT REFERENCES  Company(id) ON DELETE SET NULL,
     position TEXT NOT NULL,
     salary BIGINT CHECK (salary >= 0),
     startDate DATE NOT NULL,

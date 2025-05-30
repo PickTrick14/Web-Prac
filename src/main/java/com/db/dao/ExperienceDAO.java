@@ -19,9 +19,7 @@ public class ExperienceDAO extends GeneralDAO<Experience> {
 
     public List<Experience> findByPerson(Person person) {
         Session curSession = getCurrentSession();
-        return curSession.createQuery(
-                        "select e from Experience e join ExExpPerson ep on e.id = ep.experience.id where ep.person = :person",
-                        Experience.class)
+        return curSession.createQuery("from Experience where person = :person", Experience.class)
                 .setParameter("person", person).getResultList();
     }
 

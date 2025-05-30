@@ -9,21 +9,21 @@ INSERT INTO City (name) VALUES
 
 -- Аккаунты компаний
 INSERT INTO Account (email, password, isEmployer) VALUES
-('company1@gmail.com', 123456, TRUE),
-('company2@gmail.com', 234567, TRUE),
-('company3@gmail.com', 345678, TRUE),
-('company4@gmail.com', 456789, TRUE),
-('company5@gmail.com', 567890, TRUE);
+('company1@gmail.com', 123456, FALSE),
+('company2@gmail.com', 234567, FALSE),
+('company3@gmail.com', 345678, FALSE),
+('company4@gmail.com', 456789, FALSE),
+('company5@gmail.com', 567890, FALSE);
 
 -- Аккаунты соискателей
 INSERT INTO Account (email, password, isEmployer) VALUES
-('alice.johnson@gmail.com', 1113223, FALSE),
-('bob.smith@gmail.com', 2242212, FALSE),
-('charlie.davis@gmail.com', 3323433, FALSE),
-('diana.brown@gmail.com', 4476544, FALSE),
-('edward.wilson@gmail.com', 5555234, FALSE),
-('fiona.clark@gmail.com', 6603221, FALSE),
-('george.miller@gmail.com', 7564377, FALSE);
+('alice.johnson@gmail.com', 1113223, TRUE),
+('bob.smith@gmail.com', 2242212, TRUE),
+('charlie.davis@gmail.com', 3323433, TRUE),
+('diana.brown@gmail.com', 4476544, TRUE),
+('edward.wilson@gmail.com', 5555234, TRUE),
+('fiona.clark@gmail.com', 6603221, TRUE),
+('george.miller@gmail.com', 7564377, TRUE);
 
 INSERT INTO Company (accountID, name) VALUES
 (1, 'Tech Solutions Inc.'),
