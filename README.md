@@ -8,10 +8,13 @@
 
 > Тесты и покрытие второй стадии: [README.md](/README.md)
 
-> Тесты и покрытие третьей стадии: [README.md](/README.md)
+> Тесты третьей стадии: [README.md](/README.md)
 
 ## Результаты тестирования контроллеров (Selenium тесты)
 ![test_contr](/report/test_selenium.png)
+
+## Пример страницы с данными на сайте
+![test_data](/report/data.png)
 
 ## Результаты тестирования DAO
 ![test_dao](/report/test_res.png)
